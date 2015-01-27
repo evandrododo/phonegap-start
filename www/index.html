@@ -47,7 +47,7 @@
                 <p class="event received">Device is Ready</p>
             </div>
 					<input type="text" id="texto" name="texto">
-					<input type="button" value="Alerte-me!" onclick="alert('asdasdasd	')" id="webservice_call">
+					<input type="button" value="Alerte-me!" onclick="alerta()" id="webservice_call">
         </div> 
 			</div>
        
@@ -58,7 +58,7 @@
         <script type="text/javascript">
             app.initialize();
 					function alerta() {
-						valor = $("texto").val();
+						var valor = $("texto").val();
 						alert(valor);
 					}
         </script>
