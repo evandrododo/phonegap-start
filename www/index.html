@@ -85,7 +85,7 @@
 		app.initialize();
 		$('form').submit(function () {
 			
-			$.post( "http://testevandro.kr/webservice", $( "form" ).serialize())
+			$.post( "http://testevandro.web2145.uni5.net/webservice", $( "form" ).serialize())
 				.done(function(data) {
 					console.log(data);
 					alert( "Mensagem enviada!" );
@@ -100,7 +100,7 @@
 		$( window ).load(function() {
 			$("#nome_usuario_remetente").val(user);
 			
-			$.get( "http://testevandro.kr/webservice", "action=lista&user="+user)
+			$.get( "http://testevandro.web2145.uni5.net/webservice", "action=lista&user="+user)
 				.done(function(data) {
 					var jsonresp = JSON.parse(data);
 					var elems = "";
