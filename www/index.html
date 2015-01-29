@@ -23,6 +23,7 @@
 				<div class="ui-bar">
 						<a href="#lista" class="ui-btn ui-corner-all ui-icon-mail ui-nodisc-icon ui-btn-icon-left">recebidas</a>
 						<a href="#envia" class="ui-btn ui-corner-all ui-icon-action  ui-btn-icon-left">Enviar</a>	
+						<a href="#" onclick="recycle_msg()" class="ui-btn ui-btn-right ui-corner-all ui-icon-recycle ui-btn-icon-left">Recarregar</a>	
 				</div>
 			</div><!-- /grid-a -->
 		</div>
@@ -34,6 +35,8 @@
 					<legend>Escolha um Destinatário:</legend>
 						<input name="destinatario" id="radio-andre" value="André" type="radio">
 						<label for="radio-andre">André</label>
+						<input name="destinatario" id="radio-brasil" value="Brasil" type="radio">
+						<label for="radio-brasil">Brasil</label>
 						<input name="destinatario" id="radio-edilson" value="Edilson" checked="checked" type="radio">
 						<label for="radio-edilson">Edilson</label>
 						<input name="destinatario" id="radio-evandro" value="Evandro" type="radio">
@@ -60,6 +63,8 @@
 				<div class="ui-bar">
 						<a href="#lista" class="ui-btn ui-corner-all ui-icon-mail  ui-btn-icon-left">recebidas</a>
 						<a href="#envia" class="ui-btn ui-corner-all ui-icon-action  ui-nodisc-icon ui-btn-icon-left">Enviar</a>	
+											<a href="#" onclick="recycle_msg()" class="ui-btn ui-btn-right ui-corner-all ui-icon-recycle ui-btn-icon-left">Recarregar</a>	
+
 				</div>
 			</div><!-- /grid-a -->
 		</div>
@@ -81,9 +86,32 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript">
-		var user = "Jack";
+		var user = "Brasil";
 		app.initialize();
+		function recycle_msg() {
+			$( "#wrappercollapsibleset" ).html("")
+			$.get( "http://testevandro.web2145.uni5.net/webservice", "action=lista&user="+user)
+				.done(function(data) {
+					var jsonresp = JSON.parse(data);
+					var elems = "";
+					jsonresp.forEach(function(msg){
+						console.log(msg);
+						elems += "<div data-role='collapsible'><h3> "+msg.remetente+" em "+msg.data+" </h3>";
+						elems += "<p>"+msg.msg+"</p></div>";
+					});
+					if(elems == "")
+						$( "#wrappercollapsibleset" ).append("Nenhuma mensagem encontrada ¯\\_(ツ)_/¯");
+					else
+						$( "#wrappercollapsibleset" ).append(elems);
+					$( "#wrappercollapsibleset" ).collapsibleset( "refresh" );
+				})
+				.fail(function() {
+					alert( "Deu algo errado... :S" );
+				});
+		}
+		
 		$('form').submit(function () {
+			
 			
 			$.post( "http://testevandro.web2145.uni5.net/webservice", $( "form" ).serialize())
 				.done(function(data) {
@@ -106,7 +134,7 @@
 					var elems = "";
 					jsonresp.forEach(function(msg){
 						console.log(msg);
-						elems += "<div data-role='collapsible'><h3>"+msg.data+" por "+msg.remetente+"</h3>";
+						elems += "<div data-role='collapsible'><h3>"+msg.remetente+" em "+msg.data+"</h3>";
 						elems += "<p>"+msg.msg+"</p></div>";
 					});
 					if(elems == "")
