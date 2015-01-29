@@ -110,8 +110,9 @@
 						elems += "<p>"+msg.msg+"</p></div>";
 					});
 					if(elems == "")
-					$( "#wrappercollapsibleset" ).append("Nenhuma mensagem encontrada ¯\\_(ツ)_/¯");
-					$( "#wrappercollapsibleset" ).append(elems);
+						$( "#wrappercollapsibleset" ).append("Nenhuma mensagem encontrada ¯\\_(ツ)_/¯");
+					else
+						$( "#wrappercollapsibleset" ).append(elems);
 					$( "#wrappercollapsibleset" ).collapsibleset( "refresh" );
 				})
 				.fail(function() {
