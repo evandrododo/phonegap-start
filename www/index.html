@@ -101,9 +101,10 @@
 					});
 					if(elems == "")
 						$( "#wrappercollapsibleset" ).append("Nenhuma mensagem encontrada ¯\\_(ツ)_/¯");
-					else
-						$( "#wrappercollapsibleset" ).append(elems);
-					$( "#wrappercollapsibleset" ).collapsibleset( "refresh" );
+					else {
+						/*$( "#wrappercollapsibleset" ).append(elems);
+						$( "#wrappercollapsibleset" ).collapsibleset( "refresh" );*/
+					}
 				})
 				.fail(function() {
 					alert( "Deu algo errado... :S" );
@@ -140,8 +141,10 @@
 					if(elems == "")
 						$( "#wrappercollapsibleset" ).append("Nenhuma mensagem encontrada ¯\\_(ツ)_/¯");
 					else
-						$( "#wrappercollapsibleset" ).append(elems);
-					$( "#wrappercollapsibleset" ).collapsibleset( "refresh" );
+					{
+						/*$( "#wrappercollapsibleset" ).append(elems);
+						$( "#wrappercollapsibleset" ).collapsibleset( "refresh" );*/
+					}
 				})
 				.fail(function() {
 					alert( "Deu algo errado... :S" );

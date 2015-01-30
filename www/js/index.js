@@ -49,7 +49,14 @@ var app = {
 				} else {
 					alert("message-received, Message: " + notification.Message + " , Title: " + notification.Title + " , D: " + notification.D);
 				}
+				
 			});
+			PushNotification.getDeviceId(function (deviceId) {
+                                        alert("Your device ID: " + deviceId);
+                                    },
+                                    function (error) {
+                                        console.log(error);
+                                    });
 
     },
     // Update DOM on a Received Event
