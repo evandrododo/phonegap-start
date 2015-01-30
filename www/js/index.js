@@ -34,6 +34,23 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+				PushNotification.registerDevice("528709143579", "26227a6-cf78-445d-b875-36d24550bbaf" , function (pushToken) {
+                                        console.log("My push token: " + pushToken);
+                                    },
+                                    function (error) {
+                                        console.log(error);
+                                    });
+			document.removeEventListener('pushapps.message-received');
+			document.addEventListener('pushapps.message-received', function(event) {
+				var notification = event.notification;
+				var devicePlatform = device.platform;
+				if (devicePlatform === "iOS") {
+					alert("message-received, Message: " + notification.aps.alert + " , D: " + notification.D);
+				} else {
+					alert("message-received, Message: " + notification.Message + " , Title: " + notification.Title + " , D: " + notification.D);
+				}
+			});
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
