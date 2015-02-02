@@ -144,18 +144,21 @@ function getDeviceId() {
                                  alert("We could not get your device id. Please check your logs or contact our support team");
                                  })
 }
-
+$("#divteste1").css( "background-color", "black" );
 var app = {
     // Application Constructor
     initialize: function() {
+			$("#divteste2").css( "background-color", "black" );
         this.bindEvents();
+			
+			$("#divteste2").css( "color", "white" );
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', registerDevice, true);
+        document.addEventListener('deviceready', $("#divteste3").css( "background-color", "black" ), true);
     },
     // deviceready Event Handler
     //
@@ -164,3 +167,5 @@ var app = {
     onDeviceReady: function() {
     }
 };
+
+$("#divteste1").css( "color", "white" );
