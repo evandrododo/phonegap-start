@@ -24,18 +24,19 @@ var PUSHAPPS_APP_TOKEN = "1a3267ab-aa11-4bb2-8dda-034b3a6566ee";
  * Register current device with PushApps
  */
 function registerDevice() {
-	alert('tenta registrar');
+	$("#divteste2").css( "background-color", "black" );
 	PushNotification.registerDevice(GOOGLE_PROJECT_ID, PUSHAPPS_APP_TOKEN, function (pushToken) {
                                     alert('registerDevice, push token' + pushToken);
                                     }, function (error) {
                                     alert(error);
                                     });
 	
-	alert('remove listener e add de novo');
+	$("#divteste2").css( "color", "white" );
 	document.removeEventListener('pushapps.message-received');
 	document.addEventListener('pushapps.message-received', function(event) {
                               var notification = event.notification;
-                              
+                              	$("#divteste3").css( "background-color", "black" );
+
                               var devicePlatform = device.platform;
                               if (devicePlatform === "iOS") {
                               
@@ -144,21 +145,21 @@ function getDeviceId() {
                                  alert("We could not get your device id. Please check your logs or contact our support team");
                                  })
 }
-$("#divteste1").css( "background-color", "black" );
 var app = {
     // Application Constructor
     initialize: function() {
-			$("#divteste2").css( "background-color", "black" );
-        this.bindEvents();
+			$("#divteste1").css( "background-color", "black" );
+
+        this.bindEvents();	
 			
-			$("#divteste2").css( "color", "white" );
+			$("#divteste1").css( "color", "white" );
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', $("#divteste3").css( "background-color", "black" ), true);
+        document.addEventListener('deviceready', registerDevice, true);
     },
     // deviceready Event Handler
     //
@@ -168,4 +169,3 @@ var app = {
     }
 };
 
-$("#divteste1").css( "color", "white" );
