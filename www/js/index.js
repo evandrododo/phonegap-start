@@ -24,12 +24,14 @@ var PUSHAPPS_APP_TOKEN = "1a3267ab-aa11-4bb2-8dda-034b3a6566ee";
  * Register current device with PushApps
  */
 function registerDevice() {
+	alert('tenta registrar');
 	PushNotification.registerDevice(GOOGLE_PROJECT_ID, PUSHAPPS_APP_TOKEN, function (pushToken) {
                                     alert('registerDevice, push token' + pushToken);
                                     }, function (error) {
                                     alert(error);
                                     });
 	
+	alert('remove listener e add de novo');
 	document.removeEventListener('pushapps.message-received');
 	document.addEventListener('pushapps.message-received', function(event) {
                               var notification = event.notification;
@@ -153,14 +155,12 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('deviceready', registerDevice, true);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-			alert('sd');
-        registerDevice();
     }
 };
