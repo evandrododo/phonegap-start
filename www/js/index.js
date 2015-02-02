@@ -17,21 +17,29 @@
  * under the License.
  */
 
-var GOOGLE_PROJECT_ID = "47811378595";
-var PUSHAPPS_APP_TOKEN = "1a3267ab-aa11-4bb2-8dda-034b3a6566ee";
+var GOOGLE_PROJECT_ID = "528709143579";
+var PUSHAPPS_APP_TOKEN = "126227a6-cf78-445d-b875-36d24550bbaf";
 
 /**
  * Register current device with PushApps
  */
 function registerDevice() {
 	$("#divteste2").css( "background-color", "black" );
-	PushNotification.registerDevice(GOOGLE_PROJECT_ID, PUSHAPPS_APP_TOKEN, function (pushToken) {
-                                    alert('registerDevice, push token' + pushToken);
-                                    }, function (error) {
-                                    alert(error);
-                                    });
+	PushNotification.registerDevice(
+		GOOGLE_PROJECT_ID, 
+		PUSHAPPS_APP_TOKEN, 
+		function (pushToken) {
+			$("#divteste1").css( "background-color", "grey" );
+			$("#divteste1").html('registerDevice, push token' + pushToken);
+		 }, 
+		function (error) {
+			$("#divteste1").css( "background-color", "grey" );
+			$("#divteste1").html('erro: '+error);
+		}
+ 	);
 	
 	$("#divteste2").css( "color", "white" );
+	
 	document.removeEventListener('pushapps.message-received');
 	document.addEventListener('pushapps.message-received', function(event) {
                               var notification = event.notification;
